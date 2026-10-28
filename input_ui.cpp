@@ -35,4 +35,3 @@ void showChoice(char choice){
     }
 }
 
-
