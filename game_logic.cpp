@@ -1,5 +1,8 @@
 #include <cstdlib>
 #include <iostream>
+#include "rock_paper_scissors.h"
+
+using namespace std;
 
 char getComputerChoice();
 void chooseWinner(char playerChoice, char computerChoice);
@@ -22,7 +25,7 @@ char getComputerChoice() {
     srand(time(NULL));
     const int RANGE = 3;
     const int MINIMUM = 1;
-    int choice = (int)(random()*RANGE) + MINIMUM;
+    int choice = (int)(rand()*RANGE) + MINIMUM;
 
     // returns a (char) value to be compared with the player's choice
     switch (choice) {
@@ -42,35 +45,35 @@ void chooseWinner (char playerChoice, char computerChoice) {
     switch (playerChoice) {
         case 'r': 
             if (computerChoice == 'r') {
-                std::cout << "DRAW!\n";
+                cout << "DRAW!\n";
             } 
             else if (computerChoice == 'p') {
-                std::cout << "YOU LOSE!\n";
+                cout << "YOU LOSE!\n";
             } 
             else { // computerChoice == 's'
-                std::cout << "YOU WIN!";
+                cout << "YOU WIN!";
             }
             break;
         case 'p': // Player h
             if (computerChoice == 'p') {
-                std::cout << "DRAW!\n";
+                cout << "DRAW!\n";
             } 
             else if (computerChoice == 's') {
-                std::cout << "YOU LOSE!\n";
+                cout << "YOU LOSE!\n";
             } 
             else { // computerChoice == 'r'
-                std::cout << "YOU WIN!";
+                cout << "YOU WIN!";
             }
             break;
         case 's':
             if (computerChoice == 's') {
-                std::cout << "DRAW!\n";
+                cout << "DRAW!\n";
             } 
             else if (computerChoice == 'r') {
-                std::cout << "YOU LOSE!\n";
+                cout << "YOU LOSE!\n";
             } 
             else { // computerChoice == 'p'
-                std::cout << "YOU WIN!";
+                cout << "YOU WIN!";
             }
             break;
     }
