@@ -25,7 +25,7 @@ char getComputerChoice() {
     srand(time(NULL));
     const int RANGE = 3;
     const int MINIMUM = 1;
-    int choice = (int)(random()*RANGE) + MINIMUM;
+    int choice = (int)(rand()*RANGE) + MINIMUM;
 
     // returns a (char) value to be compared with the player's choice
     switch (choice) {
