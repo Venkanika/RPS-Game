@@ -1,10 +1,8 @@
 #include "rock_paper_scissors.h"
-
-#include "raylib.h"
-
+#include <raylib.h>
 #include <cmath>
 #include <string>
-
+using namespace std;
 namespace {
 
 const Color paper = {248, 243, 229, 255};
@@ -39,9 +37,9 @@ void setMoveButtons(int width) {
     moveButtons[2] = {{startX + (buttonWidth + gap) * 2, y, buttonWidth, buttonHeight}, Move::Scissors, "SCISSORS", blue};
 }
 
-float handwrittenWidth(Font font, const std::string& text, float fontSize, float spacing) {
+float handwrittenWidth(Font font, const string& text, float fontSize, float spacing) {
     float width = 0;
-    for (std::size_t index = 0; index < text.size(); ++index) {
+    for (size_t index = 0; index < text.size(); ++index) {
         const char glyph[] = {text[index], '\0'};
         width += MeasureTextEx(font, glyph, fontSize, spacing).x;
         if (index + 1 < text.size()) {
@@ -51,17 +49,17 @@ float handwrittenWidth(Font font, const std::string& text, float fontSize, float
     return width;
 }
 
-void drawHandwritten(Font font, const std::string& text, Vector2 position, float fontSize,
+void drawHandwritten(Font font, const string& text, Vector2 position, float fontSize,
                      float spacing, Color color, bool centered = false) {
     float x = position.x;
     if (centered) {
         x -= handwrittenWidth(font, text, fontSize, spacing) / 2.0f;
     }
 
-    for (std::size_t index = 0; index < text.size(); ++index) {
+    for (size_t index = 0; index < text.size(); ++index) {
         const char glyph[] = {text[index], '\0'};
-        const float wobble = std::sin(static_cast<float>(index) * 1.7f) * 1.4f;
-        const float tilt = std::sin(static_cast<float>(index) * 2.3f) * 1.8f;
+        const float wobble = sin(static_cast<float>(index) * 1.7f) * 1.4f;
+        const float tilt = sin(static_cast<float>(index) * 2.3f) * 1.8f;
         DrawTextPro(font, glyph, {x, position.y + wobble}, {0, 0}, tilt,
                     fontSize, spacing, color);
         x += MeasureTextEx(font, glyph, fontSize, spacing).x;
@@ -166,7 +164,7 @@ void playRound(GameState& state, Move playerMove) {
     }
 }
 
-std::string resultMessage(const GameState& state) {
+string resultMessage(const GameState& state) {
     switch (state.result) {
         case RoundResult::Win:
             return "you win this round!";
@@ -185,12 +183,12 @@ void drawScore(Font font, const GameState& state, int width) {
     drawHandwritten(font, "YOUR SCORE", {scoreCard.x + 18, scoreCard.y + 10},
                     16, 0.8f, mutedInk);
 
-    const std::string score = "W  " + std::to_string(state.wins) + "    D  " +
-                              std::to_string(state.draws) + "    L  " +
-                              std::to_string(state.losses);
+    const string score = "W  " + to_string(state.wins) + "    D  " +
+                                 to_string(state.draws) + "    L  " +
+                                 to_string(state.losses);
     drawHandwritten(font, score, {scoreCard.x + 18, scoreCard.y + 45},
                     17, 0.5f, ink);
-    drawHandwritten(font, std::to_string(state.rounds) + " rounds",
+    drawHandwritten(font, to_string(state.rounds) + " rounds",
                     {scoreCard.x + 18, scoreCard.y + 68}, 13, 0.5f, mutedInk);
 }
 
@@ -245,9 +243,9 @@ void drawGameUi(const GameState& state, float elapsedTime) {
     drawPaperBackground(width, height);
 
     const Font font = interfaceFont;
-    const std::string title = "rock paper scissors";
-    const std::size_t titleCharacters = static_cast<std::size_t>(
-        std::fmin(title.size(), elapsedTime * 28.0f));
+    const string title = "rock paper scissors";
+    const size_t titleCharacters = static_cast<size_t>(
+        fmin(title.size(), elapsedTime * 28.0f));
     drawHandwritten(font, title.substr(0, titleCharacters), {58, 52},
                     38, 1.5f, ink);
     drawHandwritten(font, "a tiny hand-drawn showdown", {62, 107},
@@ -286,9 +284,9 @@ void drawGameUi(const GameState& state, float elapsedTime) {
     DrawRectangleRounded(resultCard, 0.12f, 8, cardColor);
     drawRoughRectangle(resultCard, Fade(orange, 0.68f), 1.8f);
     if (state.hasPlayed) {
-        const std::string message = resultMessage(state);
-        const std::size_t visibleCharacters = static_cast<std::size_t>(
-            std::fmin(message.size(), state.resultRevealTime * 25.0f));
+        const string message = resultMessage(state);
+        const size_t visibleCharacters = static_cast<size_t>(
+            fmin(message.size(), state.resultRevealTime * 25.0f));
         const Color resultColor = state.result == RoundResult::Win ? green :
                                   state.result == RoundResult::Loss ? orange : blue;
         const float messageWidth = handwrittenWidth(font, message, 24, 1.0f);

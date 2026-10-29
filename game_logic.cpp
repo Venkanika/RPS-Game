@@ -1,10 +1,10 @@
 #include "rock_paper_scissors.h"
-
 #include <random>
+using namespace std;
 
 Move getComputerChoice() {
-    static std::mt19937 generator(std::random_device{}());
-    static std::uniform_int_distribution<int> distribution(0, 2);
+    static mt19937 generator(random_device{}());
+    static uniform_int_distribution<int> distribution(0, 2);
     return static_cast<Move>(distribution(generator) + 1);
 }
 
