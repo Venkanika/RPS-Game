@@ -1,17 +1,30 @@
-# Rock-Paper-Scissors (C++)
+# Rock, Paper, Scissors - doodle edition
 
-A simple command-line Rock-Paper-Scissors game built in C++ for our group project. The codebase is split across multiple files so our team could work on separate parts simultaneously using Git.
+A small C++ desktop game with a hand-drawn, paper-and-ink look. Pick a move by
+clicking one of the sketchy cards or pressing `1`, `2`, or `3`. Round results
+appear with a typewriter-style reveal, and the score stays on screen. On macOS,
+the interface uses the built-in Chalkduster font when available. Press `R` to
+reset the score or `Esc` to quit.
 
-## How It's Organized
-- `rock_paper_scissors.h`: Common header file with shared function prototypes.
-- `input_ui.cpp`: Prompts the user, validates input ('r', 'p', 's'), and prints choices.
-- `game_logic.cpp`: Generates the computer's random move and decides the winner.
-- `main.cpp`: Runs the overall game flow from start to finish.
+## Requirements
 
-## How to Build and Run
+- A C++17 compiler
+- CMake 3.16 or newer
+- [raylib](https://www.raylib.com/)
 
-Compile all source files together using `g++`:
+On macOS with Homebrew:
 
-```bash
-g++ main.cpp input_ui.cpp game_logic.cpp -o rps_game
-./rps_gameh ```bash
+```sh
+brew install cmake raylib
+```
+
+## Build and run
+
+```sh
+cmake -S . -B build
+cmake --build build
+./build/rps_game
+```
+
+The project is split into the game logic (`game_logic.cpp`), the raylib
+interface (`input_ui.cpp`), and the application loop (`main.cpp`).
