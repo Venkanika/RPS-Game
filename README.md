@@ -28,3 +28,11 @@ cmake --build build
 
 The project is split into the game logic (`game_logic.cpp`), the raylib
 interface (`input_ui.cpp`), and the application loop (`main.cpp`).
+
+## About the Project
+A multi-file Rock, Paper, Scissors desktop game developed in C++ using Raylib. The project is split into distinct modules to keep the rendering interface separate from the core game rules and to allow our team to collaborate concurrently via GitHub.
+
+## Team Contributions
+* **Kanika**: Set up the GitHub repository, managed project collaboration/merges, and developed `main.cpp` along with the shared header file (`rock_paper_scissors.h`).
+* **Kimleap**: Built the graphical user interface (`input_ui.cpp`), handling window layout, button click detection, and procedural rendering.
+* **Prasith**: Implemented the core game engine (`game_logic.cpp`), including the random computer move generator and win/loss/tie evaluation logic.

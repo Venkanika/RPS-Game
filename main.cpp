@@ -1,5 +1,5 @@
 #include "rock_paper_scissors.h"
-#include "raylib.h"
+#include <raylib.h>
 #include <string>
 
 int main() {
